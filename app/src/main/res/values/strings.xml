@@ -1,3 +1,23 @@
 <resources>
+
     <string name="app_name">Cash MxJ</string>
+
+    <!-- Dashboard -->
+    <string name="bienvenida">Hola 👋</string>
+    <string name="mensaje_bienvenida">Administra tus finanzas de forma simple</string>
+    <string name="saldo_disponible">Saldo disponible</string>
+    <string name="saldo_demo">$0</string>
+
+    <!-- Menú -->
+    <string name="mis_cuentas">Mis cuentas</string>
+    <string name="movimientos">Movimientos</string>
+    <string name="compras">Compras</string>
+    <string name="gastos_compartidos">Gastos compartidos</string>
+    <string name="contactos">Contactos</string>
+    <string name="mapa">Mapa</string>
+
+    <!-- Otros -->
+    <string name="ultimos_movimientos">Últimos movimientos</string>
+    <string name="sin_movimientos">Todavía no existen movimientos registrados.</string>
+
 </resources>
