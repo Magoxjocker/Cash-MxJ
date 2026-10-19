@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='utf-8'?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:background="@color/cash_background" android:padding="20dp">
+
+    <Button android:id="@+id/btnVolverCompras" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="← Volver" android:textAllCaps="false" android:layout_marginBottom="16dp" android:backgroundTint="@color/cash_secondary_light" android:textColor="@color/cash_primary_dark" android:minHeight="50dp" android:textSize="15sp" android:fontFamily="sans-medium"/>
+
+    <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Historial de compras" android:textSize="26sp" android:textStyle="bold" android:textColor="@color/cash_text_primary" android:layout_marginBottom="8dp" android:fontFamily="sans-medium"/>
+
+    <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Consulta tus compras realizadas y programadas." android:textSize="14sp" android:textColor="@color/cash_text_secondary" android:layout_marginBottom="20dp"/>
+
+    <Button android:id="@+id/btnNuevaCompra" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Registrar nueva compra" android:textAllCaps="false" android:layout_marginBottom="16dp" android:backgroundTint="@color/cash_primary" android:textColor="@color/cash_white" android:minHeight="50dp" android:textSize="15sp" android:fontFamily="sans-medium"/>
+
+    <TextView android:id="@+id/tvResumenCompras" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Compras registradas: 0" android:textSize="15sp" android:textStyle="bold" android:textColor="@color/cash_text_primary" android:layout_marginBottom="12dp" android:fontFamily="sans-medium"/>
+
+    <ScrollView android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:fillViewport="true">
+
+        <LinearLayout android:id="@+id/contenedorCompras" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical">
+
+            <TextView android:id="@+id/tvSinCompras" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Todavía no tienes compras registradas." android:textSize="15sp" android:textColor="@color/cash_text_secondary" android:gravity="center" android:padding="24dp"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

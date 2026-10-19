@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='utf-8'?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent" android:layout_height="match_parent" android:fillViewport="true" android:background="@color/cash_background">
+
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="20dp">
+
+        <!-- BOTON VOLVER -->
+
+        <Button android:id="@+id/btnVolverNuevaCompartida" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="← Volver" android:textAllCaps="false" android:layout_marginBottom="16dp" android:backgroundTint="@color/cash_secondary_light" android:textColor="@color/cash_primary_dark" android:minHeight="50dp" android:textSize="15sp" android:fontFamily="sans-medium"/>
+
+        <!-- ENCABEZADO -->
+
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Nueva compra compartida" android:textSize="24sp" android:textStyle="bold" android:textColor="@color/cash_text_primary" android:layout_marginBottom="8dp" android:fontFamily="sans-medium"/>
+
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Registra los productos y selecciona con quién compartirás el gasto." android:textSize="14sp" android:textColor="@color/cash_text_secondary" android:layout_marginBottom="20dp"/>
+
+        <!-- DESCRIPCION DE LA COMPRA -->
+
+        <EditText android:id="@+id/etDescripcionCompartida" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Descripción de la compra" android:inputType="textCapSentences" android:maxLines="2" android:background="@drawable/bg_cash_field" android:padding="14dp" android:textColor="@color/cash_text_primary" android:textColorHint="@color/cash_text_secondary" android:textSize="16sp" android:minHeight="52dp"/>
+
+        <!-- CUENTA QUE REALIZARA EL PAGO -->
+
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Cuenta que realizará el pago" android:textStyle="bold" android:textColor="@color/cash_text_primary" android:layout_marginTop="18dp" android:fontFamily="sans-medium"/>
+
+        <Spinner android:id="@+id/spCuentaCompartida" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:background="@drawable/bg_cash_field" android:paddingStart="12dp" android:paddingEnd="12dp" android:minHeight="52dp"/>
+
+        <!-- PRODUCTOS O SERVICIOS -->
+
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Productos o servicios" android:textSize="18sp" android:textStyle="bold" android:textColor="@color/cash_text_primary" android:layout_marginTop="24dp" android:layout_marginBottom="10dp" android:fontFamily="sans-medium"/>
+
+        <EditText android:id="@+id/etNombreProducto" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Nombre del producto" android:inputType="textCapSentences" android:background="@drawable/bg_cash_field" android:padding="14dp" android:textColor="@color/cash_text_primary" android:textColorHint="@color/cash_text_secondary" android:textSize="16sp" android:minHeight="52dp"/>
+
+        <EditText android:id="@+id/etCantidadProducto" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Cantidad" android:inputType="number" android:layout_marginTop="6dp" android:background="@drawable/bg_cash_field" android:padding="14dp" android:textColor="@color/cash_text_primary" android:textColorHint="@color/cash_text_secondary" android:textSize="16sp" android:minHeight="52dp"/>
+
+        <EditText android:id="@+id/etPrecioProducto" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Precio unitario ($)" android:inputType="number" android:layout_marginTop="6dp" android:background="@drawable/bg_cash_field" android:padding="14dp" android:textColor="@color/cash_text_primary" android:textColorHint="@color/cash_text_secondary" android:textSize="16sp" android:minHeight="52dp"/>
+
+        <!-- BOTON AGREGAR PRODUCTO -->
+
+        <Button android:id="@+id/btnAgregarProducto" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="+ Agregar producto" android:textAllCaps="false" android:layout_marginTop="12dp" android:layout_marginBottom="8dp" android:backgroundTint="@color/cash_primary" android:textColor="@color/cash_white" android:minHeight="50dp" android:textSize="15sp" android:fontFamily="sans-medium"/>
+
+        <!-- CONTENEDOR DE PRODUCTOS -->
+
+        <LinearLayout android:id="@+id/contenedorProductos" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:layout_marginTop="12dp"/>
+
+        <!-- TOTAL -->
+
+        <TextView android:id="@+id/tvTotalCompartida" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Total: $0" android:textSize="21sp" android:textStyle="bold" android:textColor="#146C43" android:layout_marginTop="14dp" android:fontFamily="sans-medium"/>
+
+        <!-- PARTICIPANTES -->
+
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Participantes" android:textSize="18sp" android:textStyle="bold" android:textColor="@color/cash_text_primary" android:layout_marginTop="24dp" android:layout_marginBottom="8dp" android:fontFamily="sans-medium"/>
+
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Tú participas como pagador. Selecciona los contactos con quienes dividirás la compra." android:textSize="14sp" android:textColor="@color/cash_text_secondary" android:layout_marginBottom="10dp"/>
+
+        <!-- CONTACTOS -->
+
+        <LinearLayout android:id="@+id/contenedorContactosCompartida" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical"/>
+
+        <!-- RESUMEN DE DISTRIBUCION -->
+
+        <TextView android:id="@+id/tvResumenReparto" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Selecciona contactos y agrega productos para calcular el reparto." android:textSize="15sp" android:textColor="@color/cash_text_primary" android:padding="14dp" android:background="#E8EEF5" android:layout_marginTop="18dp"/>
+
+        <!-- GUARDAR COMPRA -->
+
+        <Button android:id="@+id/btnGuardarCompartida" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Guardar compra compartida" android:textAllCaps="false" android:layout_marginTop="24dp" android:layout_marginBottom="24dp" android:backgroundTint="@color/cash_primary" android:textColor="@color/cash_white" android:minHeight="50dp" android:textSize="15sp" android:fontFamily="sans-medium"/>
+
+    </LinearLayout>
+
+</ScrollView>

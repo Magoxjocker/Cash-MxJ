@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='utf-8'?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent" android:layout_height="match_parent" android:background="@color/cash_background" android:fillViewport="true">
+
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="20dp">
+
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Registrar nueva compra" android:textSize="25sp" android:textStyle="bold" android:textColor="@color/cash_text_primary" android:layout_marginBottom="8dp" android:fontFamily="sans-medium"/>
+
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Completa los datos de la compra." android:textSize="14sp" android:textColor="@color/cash_text_secondary" android:layout_marginBottom="24dp"/>
+
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Descripción de la compra" android:textStyle="bold" android:textColor="@color/cash_text_primary" android:fontFamily="sans-medium"/>
+
+        <EditText android:id="@+id/etDescripcionCompra" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Ej.: Compra de supermercado" android:inputType="textCapSentences" android:maxLines="2" android:layout_marginBottom="18dp" android:background="@drawable/bg_cash_field" android:padding="14dp" android:textColor="@color/cash_text_primary" android:textColorHint="@color/cash_text_secondary" android:textSize="16sp" android:minHeight="52dp"/>
+
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Monto en pesos chilenos" android:textStyle="bold" android:textColor="@color/cash_text_primary" android:fontFamily="sans-medium"/>
+
+        <EditText android:id="@+id/etMontoCompra" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Ej.: 15000" android:inputType="number" android:layout_marginBottom="18dp" android:background="@drawable/bg_cash_field" android:padding="14dp" android:textColor="@color/cash_text_primary" android:textColorHint="@color/cash_text_secondary" android:textSize="16sp" android:minHeight="52dp"/>
+
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Cuenta de pago" android:textStyle="bold" android:textColor="@color/cash_text_primary" android:fontFamily="sans-medium"/>
+
+        <Spinner android:id="@+id/spCuentaCompra" android:layout_width="match_parent" android:layout_height="48dp" android:layout_marginBottom="18dp" android:background="@drawable/bg_cash_field" android:paddingStart="12dp" android:paddingEnd="12dp" android:minHeight="52dp"/>
+
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Contacto asociado (opcional)" android:textStyle="bold" android:textColor="@color/cash_text_primary" android:fontFamily="sans-medium"/>
+
+        <Spinner android:id="@+id/spContactoCompra" android:layout_width="match_parent" android:layout_height="48dp" android:layout_marginBottom="18dp" android:background="@drawable/bg_cash_field" android:paddingStart="12dp" android:paddingEnd="12dp" android:minHeight="52dp"/>
+
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Estado de la compra" android:textStyle="bold" android:textColor="@color/cash_text_primary" android:fontFamily="sans-medium"/>
+
+        <Spinner android:id="@+id/spEstadoCompra" android:layout_width="match_parent" android:layout_height="48dp" android:layout_marginBottom="18dp" android:background="@drawable/bg_cash_field" android:paddingStart="12dp" android:paddingEnd="12dp" android:minHeight="52dp"/>
+
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Fecha de compra o fecha programada" android:textStyle="bold" android:textColor="@color/cash_text_primary" android:layout_marginBottom="8dp" android:fontFamily="sans-medium"/>
+
+        <Button android:id="@+id/btnFechaCompra" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Seleccionar fecha" android:textAllCaps="false" android:layout_marginBottom="12dp" android:backgroundTint="@color/cash_primary" android:textColor="@color/cash_white" android:minHeight="50dp" android:textSize="15sp" android:fontFamily="sans-medium"/>
+
+        <TextView android:id="@+id/tvAvisoCompra" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Las compras realizadas descuentan saldo. Las programadas no descuentan hasta confirmarlas." android:textColor="@color/cash_text_secondary" android:textSize="13sp" android:layout_marginBottom="22dp"/>
+
+        <Button android:id="@+id/btnGuardarCompra" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Guardar compra" android:textAllCaps="false" android:backgroundTint="@color/cash_primary" android:textColor="@color/cash_white" android:minHeight="50dp" android:textSize="15sp" android:fontFamily="sans-medium"/>
+
+    </LinearLayout>
+</ScrollView>

@@ -1,221 +1,69 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent" android:layout_height="match_parent" android:fillViewport="true" android:background="@color/cash_background">
 
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fillViewport="true"
-    android:background="@color/cash_background">
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="24dp">
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="24dp">
 
         <!-- BIENVENIDA -->
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/bienvenida"
-            android:textColor="@color/cash_primary_dark"
-            android:textSize="30sp"
-            android:textStyle="bold" />
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/bienvenida" android:textColor="@color/cash_primary_dark" android:textSize="30sp" android:textStyle="bold" android:fontFamily="sans-medium"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:text="@string/mensaje_bienvenida"
-            android:textColor="@color/cash_text_secondary"
-            android:textSize="15sp" />
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="4dp" android:text="@string/mensaje_bienvenida" android:textColor="@color/cash_text_secondary" android:textSize="15sp"/>
 
 
         <!-- SALDO -->
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:background="@color/cash_primary"
-            android:orientation="vertical"
-            android:padding="24dp">
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="24dp" android:background="@drawable/bg_cash_hero" android:orientation="vertical" android:padding="24dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/saldo_disponible"
-                android:textColor="@color/cash_white"
-                android:textSize="15sp" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/saldo_disponible" android:textColor="#C7EDE1" android:textSize="15sp"/>
 
-            <TextView
-                android:id="@+id/tvSaldoTotal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
-                android:text="@string/saldo_demo"
-                android:textColor="@color/cash_white"
-                android:textSize="34sp"
-                android:textStyle="bold" />
+            <TextView android:id="@+id/tvSaldoTotal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="6dp" android:text="@string/saldo_demo" android:textColor="@color/cash_white" android:textSize="38sp" android:textStyle="bold" android:fontFamily="sans-medium" android:letterSpacing="0.01"/>
 
         </LinearLayout>
 
 
         <!-- TÍTULO MENÚ -->
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="28dp"
-            android:text="¿Qué quieres hacer?"
-            android:textColor="@color/cash_text_primary"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="28dp" android:text="Tu espacio financiero" android:textColor="@color/cash_text_primary" android:textSize="20sp" android:textStyle="bold" android:fontFamily="sans-medium"/>
 
 
         <!-- FILA 1 -->
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:orientation="horizontal"
-            android:weightSum="2">
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="16dp" android:orientation="horizontal" android:weightSum="2">
 
-            <TextView
-                android:id="@+id/btnCuentas"
-                android:layout_width="0dp"
-                android:layout_height="110dp"
-                android:layout_marginEnd="8dp"
-                android:layout_weight="1"
-                android:background="@drawable/bg_card"
-                android:gravity="center"
-                android:text="💰&#10;Mis cuentas"
-                android:textAlignment="center"
-                android:textColor="@color/cash_text_primary"
-                android:textSize="17sp"
-                android:textStyle="bold" />
+            <TextView android:id="@+id/btnCuentas" android:layout_width="0dp" android:layout_height="110dp" android:layout_marginEnd="8dp" android:layout_weight="1" android:background="@drawable/bg_card" android:gravity="center" android:text="💰&#10;Mis cuentas" android:textAlignment="center" android:textColor="@color/cash_text_primary" android:textSize="16sp" android:textStyle="bold" android:fontFamily="sans-medium" android:contentDescription="💰&#10;Mis cuentas" android:clickable="true" android:focusable="true" android:minHeight="116dp"/>
 
-            <TextView
-                android:id="@+id/btnMovimientos"
-                android:layout_width="0dp"
-                android:layout_height="110dp"
-                android:layout_marginStart="8dp"
-                android:layout_weight="1"
-                android:background="@drawable/bg_card"
-                android:gravity="center"
-                android:text="💳&#10;Movimientos"
-                android:textAlignment="center"
-                android:textColor="@color/cash_text_primary"
-                android:textSize="17sp"
-                android:textStyle="bold" />
+            <TextView android:id="@+id/btnMovimientos" android:layout_width="0dp" android:layout_height="110dp" android:layout_marginStart="8dp" android:layout_weight="1" android:background="@drawable/bg_card" android:gravity="center" android:text="💳&#10;Movimientos" android:textAlignment="center" android:textColor="@color/cash_text_primary" android:textSize="16sp" android:textStyle="bold" android:fontFamily="sans-medium" android:contentDescription="💳&#10;Movimientos" android:clickable="true" android:focusable="true" android:minHeight="116dp"/>
 
         </LinearLayout>
 
 
         <!-- FILA 2 -->
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:orientation="horizontal"
-            android:weightSum="2">
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="16dp" android:orientation="horizontal" android:weightSum="2">
 
-            <TextView
-                android:id="@+id/btnCompras"
-                android:layout_width="0dp"
-                android:layout_height="110dp"
-                android:layout_marginEnd="8dp"
-                android:layout_weight="1"
-                android:background="@drawable/bg_card"
-                android:gravity="center"
-                android:text="🛒&#10;Compras"
-                android:textAlignment="center"
-                android:textColor="@color/cash_text_primary"
-                android:textSize="17sp"
-                android:textStyle="bold" />
+            <TextView android:id="@+id/btnCompras" android:layout_width="0dp" android:layout_height="110dp" android:layout_marginEnd="8dp" android:layout_weight="1" android:background="@drawable/bg_card" android:gravity="center" android:text="🛒&#10;Compras" android:textAlignment="center" android:textColor="@color/cash_text_primary" android:textSize="16sp" android:textStyle="bold" android:fontFamily="sans-medium" android:contentDescription="🛒&#10;Compras" android:clickable="true" android:focusable="true" android:minHeight="116dp"/>
 
-            <TextView
-                android:id="@+id/btnCompartidos"
-                android:layout_width="0dp"
-                android:layout_height="110dp"
-                android:layout_marginStart="8dp"
-                android:layout_weight="1"
-                android:background="@drawable/bg_card"
-                android:gravity="center"
-                android:text="🤝&#10;Gastos compartidos"
-                android:textAlignment="center"
-                android:textColor="@color/cash_text_primary"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+            <TextView android:id="@+id/btnCompartidos" android:layout_width="0dp" android:layout_height="110dp" android:layout_marginStart="8dp" android:layout_weight="1" android:background="@drawable/bg_card" android:gravity="center" android:text="🤝&#10;Gastos compartidos" android:textAlignment="center" android:textColor="@color/cash_text_primary" android:textSize="16sp" android:textStyle="bold" android:fontFamily="sans-medium" android:contentDescription="🤝&#10;Gastos compartidos" android:clickable="true" android:focusable="true" android:minHeight="116dp"/>
 
         </LinearLayout>
 
 
         <!-- FILA 3 -->
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:orientation="horizontal"
-            android:weightSum="2">
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="16dp" android:orientation="horizontal" android:weightSum="2">
 
-            <TextView
-                android:id="@+id/btnContactos"
-                android:layout_width="0dp"
-                android:layout_height="110dp"
-                android:layout_marginEnd="8dp"
-                android:layout_weight="1"
-                android:background="@drawable/bg_card"
-                android:gravity="center"
-                android:text="👥&#10;Contactos"
-                android:textAlignment="center"
-                android:textColor="@color/cash_text_primary"
-                android:textSize="17sp"
-                android:textStyle="bold" />
+            <TextView android:id="@+id/btnContactos" android:layout_width="0dp" android:layout_height="110dp" android:layout_marginEnd="8dp" android:layout_weight="1" android:background="@drawable/bg_card" android:gravity="center" android:text="👥&#10;Contactos" android:textAlignment="center" android:textColor="@color/cash_text_primary" android:textSize="16sp" android:textStyle="bold" android:fontFamily="sans-medium" android:contentDescription="👥&#10;Contactos" android:clickable="true" android:focusable="true" android:minHeight="116dp"/>
 
-            <TextView
-                android:id="@+id/btnMapa"
-                android:layout_width="0dp"
-                android:layout_height="110dp"
-                android:layout_marginStart="8dp"
-                android:layout_weight="1"
-                android:background="@drawable/bg_card"
-                android:gravity="center"
-                android:text="📍&#10;Mapa"
-                android:textAlignment="center"
-                android:textColor="@color/cash_text_primary"
-                android:textSize="17sp"
-                android:textStyle="bold" />
+            <TextView android:id="@+id/btnMapa" android:layout_width="0dp" android:layout_height="110dp" android:layout_marginStart="8dp" android:layout_weight="1" android:background="@drawable/bg_card" android:gravity="center" android:text="📍&#10;Mapa" android:textAlignment="center" android:textColor="@color/cash_text_primary" android:textSize="16sp" android:textStyle="bold" android:fontFamily="sans-medium" android:contentDescription="📍&#10;Mapa" android:clickable="true" android:focusable="true" android:minHeight="116dp"/>
 
         </LinearLayout>
 
 
         <!-- ÚLTIMOS MOVIMIENTOS -->
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:text="@string/ultimos_movimientos"
-            android:textColor="@color/cash_text_primary"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="30dp" android:text="Actividad reciente" android:textColor="@color/cash_text_primary" android:textSize="20sp" android:textStyle="bold" android:fontFamily="sans-medium"/>
 
-        <TextView
-            android:id="@+id/tvSinMovimientos"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:layout_marginBottom="30dp"
-            android:background="@drawable/bg_card"
-            android:padding="18dp"
-            android:text="@string/sin_movimientos"
-            android:textColor="@color/cash_text_secondary"
-            android:textSize="14sp" />
+        <TextView android:id="@+id/tvSinMovimientos" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="12dp" android:layout_marginBottom="30dp" android:background="@drawable/bg_card" android:padding="18dp" android:text="@string/sin_movimientos" android:textColor="@color/cash_text_secondary" android:textSize="14sp"/>
 
     </LinearLayout>
 

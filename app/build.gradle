@@ -45,6 +45,10 @@ dependencies {
     // AUTENTICACION BIOMETRICA
     implementation 'androidx.biometric:biometric:1.1.0'
 
+    // MAPLIBRE + OPENFREEMAP
+    // REEMPLAZA COMPLETAMENTE A OSMdroid
+    implementation 'org.maplibre.gl:android-sdk-opengl:13.4.0'
+
     // PRUEBAS
     testImplementation libs.junit
     androidTestImplementation libs.espresso.core

@@ -1,8 +1,21 @@
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <!-- PERMISOS -->
     <uses-permission
         android:name="android.permission.USE_BIOMETRIC" />
+
+    <!-- GOOGLE MAPS -->
+    <uses-permission
+        android:name="android.permission.INTERNET" />
+
+    <uses-permission
+        android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
 
     <application
         android:name=".CashMxJApplication"
@@ -15,6 +28,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CashMxJ">
 
+        <!-- ACTIVIDAD PRINCIPAL -->
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -27,6 +41,7 @@
 
         </activity>
 
+        <!-- MODULO 1: CUENTAS Y MOVIMIENTOS -->
         <activity
             android:name=".CuentasActivity"
             android:exported="false"
@@ -47,6 +62,7 @@
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
 
+        <!-- MODULO 0: CONTACTOS -->
         <activity
             android:name=".ContactosActivity"
             android:exported="false"
@@ -54,6 +70,32 @@
 
         <activity
             android:name=".NuevoContactoActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+
+        <!-- MODULO 2: COMPRAS -->
+        <activity
+            android:name=".ComprasActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+
+        <activity
+            android:name=".NuevaCompraActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+
+        <!-- MODULO 3: COMPRAS COMPARTIDAS -->
+        <activity
+            android:name=".NuevaCompraCompartidaActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".CompartidasActivity"
+            android:exported="false" />
+
+        <!-- MODULO 4: OPENSTREETMAP -->
+        <activity
+            android:name=".MapaActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
 

@@ -1,115 +1,27 @@
+<?xml version='1.0' encoding='utf-8'?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent" android:layout_height="match_parent" android:background="@color/cash_background" android:fillViewport="true">
 
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/cash_background"
-    android:fillViewport="true">
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="20dp">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="20dp">
+        <TextView android:id="@+id/btnVolverNuevoContacto" android:layout_width="wrap_content" android:layout_height="wrap_content" android:padding="10dp" android:text="← Volver" android:textColor="@color/cash_primary" android:textSize="16sp" android:clickable="true" android:focusable="true" android:contentDescription="← Volver"/>
 
-        <TextView
-            android:id="@+id/btnVolverNuevoContacto"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:text="← Volver"
-            android:textColor="@color/cash_primary"
-            android:textSize="16sp"
-            android:clickable="true"
-            android:focusable="true" />
+        <TextView android:id="@+id/tvTituloContacto" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="20dp" android:text="Nuevo contacto" android:textColor="@color/cash_text_primary" android:textSize="28sp" android:textStyle="bold" android:fontFamily="sans-medium"/>
 
-        <TextView
-            android:id="@+id/tvTituloContacto"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="Nuevo contacto"
-            android:textColor="@color/cash_text_primary"
-            android:textSize="28sp"
-            android:textStyle="bold" />
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:text="Registra una persona para futuras compras compartidas y deudas." android:textColor="#666666" android:textSize="14sp"/>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="Registra una persona para futuras compras compartidas y deudas."
-            android:textColor="#666666"
-            android:textSize="14sp" />
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="28dp" android:text="Nombre completo *" android:textColor="@color/cash_text_primary" android:textSize="15sp" android:textStyle="bold" android:fontFamily="sans-medium"/>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="28dp"
-            android:text="Nombre completo *"
-            android:textColor="@color/cash_text_primary"
-            android:textSize="15sp"
-            android:textStyle="bold" />
+        <EditText android:id="@+id/etNombreContacto" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:hint="Ej.: Juan Pérez" android:inputType="textPersonName" android:maxLines="1" android:padding="14dp" android:textSize="16sp" android:background="@drawable/bg_cash_field" android:textColor="@color/cash_text_primary" android:textColorHint="@color/cash_text_secondary" android:minHeight="52dp"/>
 
-        <EditText
-            android:id="@+id/etNombreContacto"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:hint="Ej.: Juan Pérez"
-            android:inputType="textPersonName"
-            android:maxLines="1"
-            android:padding="14dp"
-            android:textSize="16sp" />
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="22dp" android:text="Teléfono" android:textColor="@color/cash_text_primary" android:textSize="15sp" android:textStyle="bold" android:fontFamily="sans-medium"/>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="22dp"
-            android:text="Teléfono"
-            android:textColor="@color/cash_text_primary"
-            android:textSize="15sp"
-            android:textStyle="bold" />
+        <EditText android:id="@+id/etTelefonoContacto" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:hint="Ej.: +56 9 1234 5678" android:inputType="phone" android:maxLines="1" android:padding="14dp" android:textSize="16sp" android:background="@drawable/bg_cash_field" android:textColor="@color/cash_text_primary" android:textColorHint="@color/cash_text_secondary" android:minHeight="52dp"/>
 
-        <EditText
-            android:id="@+id/etTelefonoContacto"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:hint="Ej.: +56 9 1234 5678"
-            android:inputType="phone"
-            android:maxLines="1"
-            android:padding="14dp"
-            android:textSize="16sp" />
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="22dp" android:text="Correo electrónico" android:textColor="@color/cash_text_primary" android:textSize="15sp" android:textStyle="bold" android:fontFamily="sans-medium"/>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="22dp"
-            android:text="Correo electrónico"
-            android:textColor="@color/cash_text_primary"
-            android:textSize="15sp"
-            android:textStyle="bold" />
+        <EditText android:id="@+id/etCorreoContacto" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:hint="Ej.: contacto@correo.cl" android:inputType="textEmailAddress" android:maxLines="1" android:padding="14dp" android:textSize="16sp" android:background="@drawable/bg_cash_field" android:textColor="@color/cash_text_primary" android:textColorHint="@color/cash_text_secondary" android:minHeight="52dp"/>
 
-        <EditText
-            android:id="@+id/etCorreoContacto"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:hint="Ej.: contacto@correo.cl"
-            android:inputType="textEmailAddress"
-            android:maxLines="1"
-            android:padding="14dp"
-            android:textSize="16sp" />
-
-        <Button
-            android:id="@+id/btnGuardarContacto"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="36dp"
-            android:backgroundTint="@color/cash_primary"
-            android:text="Guardar contacto"
-            android:textAllCaps="false"
-            android:textColor="@color/cash_white"
-            android:textSize="16sp" />
+        <Button android:id="@+id/btnGuardarContacto" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="36dp" android:backgroundTint="@color/cash_primary" android:text="Guardar contacto" android:textAllCaps="false" android:textColor="@color/cash_white" android:textSize="15sp" android:minHeight="50dp" android:fontFamily="sans-medium"/>
 
     </LinearLayout>
 

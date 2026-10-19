@@ -1,20 +1,5 @@
-
-<resources>
-
-    <style name="Base.Theme.CashMxJ"
-        parent="Theme.Material3.DayNight.NoActionBar">
-
-        <item name="android:statusBarColor">#FFFFFF</item>
-        <item name="android:windowLightStatusBar">true</item>
-
-        <item name="android:navigationBarColor">#FFFFFF</item>
-        <item name="android:windowLightNavigationBar">true</item>
-
-        <item name="android:windowActionModeOverlay">false</item>
-
-    </style>
-
-    <style name="Theme.CashMxJ"
-        parent="Base.Theme.CashMxJ" />
-
-</resources>
+<?xml version="1.0" encoding="utf-8"?>
+<resources><style name="Base.Theme.CashMxJ" parent="Theme.Material3.DayNight.NoActionBar">
+<item name="colorPrimary">@color/cash_primary</item><item name="colorOnPrimary">@color/cash_white</item><item name="colorSecondary">@color/cash_secondary</item><item name="colorSurface">@color/cash_surface</item><item name="colorOnSurface">@color/cash_text_primary</item>
+<item name="android:fontFamily">sans</item><item name="android:statusBarColor">@color/cash_background</item><item name="android:windowLightStatusBar">true</item><item name="android:navigationBarColor">@color/cash_background</item><item name="android:windowLightNavigationBar">true</item>
+</style><style name="Theme.CashMxJ" parent="Base.Theme.CashMxJ"/></resources>

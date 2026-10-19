@@ -22,11 +22,11 @@ import java.util.concurrent.Executor;
 public class MainActivity extends AppCompatActivity {
 
     private DatabaseHelper databaseHelper;
-    private TextView tvSaldoTotal;
+    private CashMxJApplication aplicacion;
 
+    private TextView tvSaldoTotal;
     private View contenidoPrincipal;
 
-    private boolean autenticado = false;
     private boolean autenticacionEnCurso = false;
 
     private BiometricPrompt biometricPrompt;
@@ -38,51 +38,96 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
 
+        aplicacion = (CashMxJApplication) getApplication();
         databaseHelper = new DatabaseHelper(this);
 
         contenidoPrincipal = findViewById(android.R.id.content);
-        contenidoPrincipal.setVisibility(View.INVISIBLE);
+        tvSaldoTotal = findViewById(R.id.tvSaldoTotal);
 
         View btnCuentas = findViewById(R.id.btnCuentas);
         View btnMovimientos = findViewById(R.id.btnMovimientos);
         View btnContactos = findViewById(R.id.btnContactos);
+        View btnCompras = findViewById(R.id.btnCompras);
 
-        tvSaldoTotal = findViewById(R.id.tvSaldoTotal);
+        // NUEVO: botón de compras compartidas
+        View btnCompartidos = findViewById(R.id.btnCompartidos);
+
+        // =====================================
+        // CUENTAS
+        // =====================================
 
         btnCuentas.setOnClickListener(v -> {
-            if (!autenticado) return;
+            if (aplicacion.requiereAutenticacion()) return;
 
-            Intent intent = new Intent(
-                    MainActivity.this,
-                    CuentasActivity.class
+            startActivity(
+                    new Intent(this, CuentasActivity.class)
             );
-
-            startActivity(intent);
         });
+
+        // =====================================
+        // MOVIMIENTOS
+        // =====================================
 
         btnMovimientos.setOnClickListener(v -> {
-            if (!autenticado) return;
+            if (aplicacion.requiereAutenticacion()) return;
 
-            Intent intent = new Intent(
-                    MainActivity.this,
-                    MovimientosActivity.class
+            startActivity(
+                    new Intent(this, MovimientosActivity.class)
             );
-
-            startActivity(intent);
         });
+
+        // =====================================
+        // CONTACTOS
+        // =====================================
 
         btnContactos.setOnClickListener(v -> {
-            if (!autenticado) return;
+            if (aplicacion.requiereAutenticacion()) return;
 
-            Intent intent = new Intent(
-                    MainActivity.this,
-                    ContactosActivity.class
+            startActivity(
+                    new Intent(this, ContactosActivity.class)
             );
-
-            startActivity(intent);
         });
 
+        // =====================================
+        // COMPRAS
+        // =====================================
+
+        btnCompras.setOnClickListener(v -> {
+            if (aplicacion.requiereAutenticacion()) return;
+
+            startActivity(
+                    new Intent(this, ComprasActivity.class)
+            );
+        });
+
+        // =====================================
+        // COMPRAS COMPARTIDAS
+        // =====================================
+
+        btnCompartidos.setOnClickListener(v -> {
+            if (aplicacion.requiereAutenticacion()) return;
+
+            startActivity(
+                    new Intent(this, CompartidasActivity.class)
+            );
+        });
+
+        // MODULO 4: MAPA DE LUGARES
+        View btnMapa = findViewById(R.id.btnMapa);
+        btnMapa.setOnClickListener(v -> {
+            if (aplicacion.requiereAutenticacion()) return;
+            startActivity(new Intent(this, MapaActivity.class));
+        });
+
+        // =====================================
+        // AUTENTICACIÓN
+        // =====================================
+
         configurarAutenticacionBiometrica();
+
+        if (aplicacion.requiereAutenticacion()) {
+            contenidoPrincipal.setVisibility(View.INVISIBLE);
+        }
     }
 
     private void configurarAutenticacionBiometrica() {
@@ -101,7 +146,8 @@ public class MainActivity extends AppCompatActivity {
                         super.onAuthenticationSucceeded(result);
 
                         autenticacionEnCurso = false;
-                        autenticado = true;
+
+                        aplicacion.marcarAutenticado();
 
                         contenidoPrincipal.setVisibility(View.VISIBLE);
 
@@ -119,19 +165,15 @@ public class MainActivity extends AppCompatActivity {
                             int errorCode,
                             @NonNull CharSequence errString) {
 
-                        super.onAuthenticationError(errorCode, errString);
+                        super.onAuthenticationError(
+                                errorCode,
+                                errString
+                        );
 
                         autenticacionEnCurso = false;
 
-                        if (!autenticado) {
+                        if (aplicacion.requiereAutenticacion()) {
                             contenidoPrincipal.setVisibility(View.INVISIBLE);
-
-                            Toast.makeText(
-                                    MainActivity.this,
-                                    "Autenticación cancelada o no disponible",
-                                    Toast.LENGTH_SHORT
-                            ).show();
-
                             finish();
                         }
                     }
@@ -143,7 +185,7 @@ public class MainActivity extends AppCompatActivity {
 
                         Toast.makeText(
                                 MainActivity.this,
-                                "Huella no reconocida. Intenta nuevamente.",
+                                "Huella no reconocida",
                                 Toast.LENGTH_SHORT
                         ).show();
                     }
@@ -154,38 +196,35 @@ public class MainActivity extends AppCompatActivity {
                 .setTitle("Cash MxJ")
                 .setSubtitle("Confirma tu identidad para acceder")
                 .setAllowedAuthenticators(
-                        BiometricManager.Authenticators.BIOMETRIC_STRONG
-                                | BiometricManager.Authenticators.DEVICE_CREDENTIAL
+                        BiometricManager.Authenticators.BIOMETRIC_STRONG |
+                                BiometricManager.Authenticators.DEVICE_CREDENTIAL
                 )
                 .build();
     }
 
     private void iniciarAutenticacion() {
 
-        if (autenticado || autenticacionEnCurso) {
-            return;
-        }
+        if (autenticacionEnCurso) return;
 
         BiometricManager biometricManager =
                 BiometricManager.from(this);
 
         int resultado = biometricManager.canAuthenticate(
-                BiometricManager.Authenticators.BIOMETRIC_STRONG
-                        | BiometricManager.Authenticators.DEVICE_CREDENTIAL
+                BiometricManager.Authenticators.BIOMETRIC_STRONG |
+                        BiometricManager.Authenticators.DEVICE_CREDENTIAL
         );
 
         if (resultado == BiometricManager.BIOMETRIC_SUCCESS) {
 
             autenticacionEnCurso = true;
+
             biometricPrompt.authenticate(promptInfo);
 
         } else {
 
-            contenidoPrincipal.setVisibility(View.INVISIBLE);
-
             Toast.makeText(
                     this,
-                    "Configura una huella o bloqueo de pantalla seguro para acceder.",
+                    "Configura una huella o PIN seguro para acceder",
                     Toast.LENGTH_LONG
             ).show();
 
@@ -197,19 +236,21 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        if (autenticado) {
-            actualizarSaldoTotal();
-        } else {
+        if (aplicacion.requiereAutenticacion()) {
+
             contenidoPrincipal.setVisibility(View.INVISIBLE);
             iniciarAutenticacion();
+
+        } else {
+
+            contenidoPrincipal.setVisibility(View.VISIBLE);
+            actualizarSaldoTotal();
         }
     }
 
     private void actualizarSaldoTotal() {
 
-        if (!autenticado) {
-            return;
-        }
+        if (aplicacion.requiereAutenticacion()) return;
 
         long saldoTotal = databaseHelper.obtenerSaldoTotal();
 
@@ -221,7 +262,9 @@ public class MainActivity extends AppCompatActivity {
         formato.setMaximumFractionDigits(0);
         formato.setMinimumFractionDigits(0);
 
-        tvSaldoTotal.setText(formato.format(saldoTotal));
+        tvSaldoTotal.setText(
+                formato.format(saldoTotal)
+        );
     }
 
     @Override

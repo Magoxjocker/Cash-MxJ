@@ -1,25 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <!-- Identidad Cash MxJ -->
-    <color name="cash_primary">#146B5D</color>
-    <color name="cash_primary_dark">#0D4F45</color>
-    <color name="cash_secondary">#35C99A</color>
-    <color name="cash_secondary_light">#DDF5EC</color>
-
-    <!-- Fondos -->
-    <color name="cash_background">#F4F6F5</color>
-    <color name="cash_surface">#FFFFFF</color>
-
-    <!-- Textos -->
-    <color name="cash_text_primary">#1C2523</color>
-    <color name="cash_text_secondary">#66736F</color>
-    <color name="cash_white">#FFFFFF</color>
-
-    <!-- Estados financieros -->
-    <color name="cash_income">#16865F</color>
-    <color name="cash_expense">#D94C4C</color>
-
-    <!-- Otros -->
-    <color name="cash_border">#DCE4E1</color>
+<color name="cash_primary">#125C50</color><color name="cash_primary_dark">#103F39</color><color name="cash_secondary">#15866F</color><color name="cash_secondary_light">#E1F4EC</color>
+<color name="cash_background">#F5F7F8</color><color name="cash_surface">#FFFFFF</color><color name="cash_text_primary">#182A29</color><color name="cash_text_secondary">#647571</color><color name="cash_white">#FFFFFF</color>
+<color name="cash_income">#0D8964</color><color name="cash_expense">#C34B52</color><color name="cash_border">#E2E9E7</color><color name="cash_accent">#C4A66A</color><color name="cash_muted">#EFF3F1</color>
 </resources>

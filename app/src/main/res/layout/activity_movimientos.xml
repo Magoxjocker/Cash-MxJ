@@ -1,158 +1,48 @@
+<?xml version='1.0' encoding='utf-8'?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent" android:layout_height="match_parent" android:fillViewport="true" android:background="@color/cash_background">
 
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fillViewport="true"
-    android:background="@color/cash_background">
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="24dp">
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="24dp">
 
         <!-- BOTÓN VOLVER -->
-        <TextView
-            android:id="@+id/btnVolverMovimientos"
-            android:layout_width="wrap_content"
-            android:layout_height="48dp"
-            android:minWidth="100dp"
-            android:gravity="center_vertical"
-            android:paddingEnd="16dp"
-            android:text="← Volver"
-            android:textColor="@color/cash_primary"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:clickable="true"
-            android:focusable="true" />
+        <TextView android:id="@+id/btnVolverMovimientos" android:layout_width="wrap_content" android:layout_height="48dp" android:minWidth="100dp" android:gravity="center_vertical" android:paddingEnd="16dp" android:text="← Volver" android:textColor="@color/cash_primary" android:textSize="16sp" android:textStyle="bold" android:clickable="true" android:focusable="true" android:fontFamily="sans-medium" android:contentDescription="← Volver"/>
 
         <!-- TÍTULO -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="Movimientos"
-            android:textColor="@color/cash_primary_dark"
-            android:textSize="30sp"
-            android:textStyle="bold" />
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="20dp" android:text="Movimientos" android:textColor="@color/cash_primary_dark" android:textSize="30sp" android:textStyle="bold" android:fontFamily="sans-medium"/>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:text="Consulta tus ingresos y gastos"
-            android:textColor="@color/cash_text_secondary"
-            android:textSize="15sp" />
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="4dp" android:text="Consulta tus ingresos y gastos" android:textColor="@color/cash_text_secondary" android:textSize="15sp"/>
 
         <!-- RESUMEN -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:orientation="horizontal">
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="24dp" android:orientation="horizontal">
 
             <!-- INGRESOS -->
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginEnd="8dp"
-                android:background="@drawable/bg_card"
-                android:orientation="vertical"
-                android:padding="16dp">
+            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:layout_marginEnd="8dp" android:background="@drawable/bg_card" android:orientation="vertical" android:padding="16dp">
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Ingresos"
-                    android:textColor="@color/cash_text_secondary"
-                    android:textSize="14sp" />
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Ingresos" android:textColor="@color/cash_text_secondary" android:textSize="14sp"/>
 
-                <TextView
-                    android:id="@+id/tvTotalIngresos"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="$0"
-                    android:textColor="#207A54"
-                    android:textSize="21sp"
-                    android:textStyle="bold" />
+                <TextView android:id="@+id/tvTotalIngresos" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:text="$0" android:textColor="#207A54" android:textSize="21sp" android:textStyle="bold" android:fontFamily="sans-medium"/>
 
             </LinearLayout>
 
             <!-- GASTOS -->
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginStart="8dp"
-                android:background="@drawable/bg_card"
-                android:orientation="vertical"
-                android:padding="16dp">
+            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:layout_marginStart="8dp" android:background="@drawable/bg_card" android:orientation="vertical" android:padding="16dp">
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Gastos"
-                    android:textColor="@color/cash_text_secondary"
-                    android:textSize="14sp" />
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Gastos" android:textColor="@color/cash_text_secondary" android:textSize="14sp"/>
 
-                <TextView
-                    android:id="@+id/tvTotalGastos"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="$0"
-                    android:textColor="#B42318"
-                    android:textSize="21sp"
-                    android:textStyle="bold" />
+                <TextView android:id="@+id/tvTotalGastos" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:text="$0" android:textColor="#B42318" android:textSize="21sp" android:textStyle="bold" android:fontFamily="sans-medium"/>
 
             </LinearLayout>
 
         </LinearLayout>
 
         <!-- BOTÓN NUEVO MOVIMIENTO -->
-        <Button
-            android:id="@+id/btnNuevoMovimiento"
-            android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:layout_marginTop="24dp"
-            android:backgroundTint="@color/cash_secondary"
-            android:text="+ Nuevo movimiento"
-            android:textAllCaps="false"
-            android:textColor="@color/cash_white"
-            android:textSize="17sp"
-            android:textStyle="bold" />
+        <Button android:id="@+id/btnNuevoMovimiento" android:layout_width="match_parent" android:layout_height="56dp" android:layout_marginTop="24dp" android:backgroundTint="@color/cash_primary" android:text="+ Nuevo movimiento" android:textAllCaps="false" android:textColor="@color/cash_white" android:textSize="15sp" android:textStyle="bold" android:minHeight="50dp" android:fontFamily="sans-medium"/>
 
         <!-- HISTORIAL -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="28dp"
-            android:text="Historial de movimientos"
-            android:textColor="@color/cash_text_primary"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="28dp" android:text="Historial de movimientos" android:textColor="@color/cash_text_primary" android:textSize="20sp" android:textStyle="bold" android:fontFamily="sans-medium"/>
 
-        <TextView
-            android:id="@+id/tvSinMovimientos"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:gravity="center"
-            android:padding="24dp"
-            android:text="Todavía no tienes movimientos registrados."
-            android:textColor="@color/cash_text_secondary"
-            android:textSize="15sp" />
+        <TextView android:id="@+id/tvSinMovimientos" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="20dp" android:gravity="center" android:padding="24dp" android:text="Todavía no tienes movimientos registrados." android:textColor="@color/cash_text_secondary" android:textSize="15sp"/>
 
-        <LinearLayout
-            android:id="@+id/contenedorMovimientos"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="24dp"
-            android:orientation="vertical" />
+        <LinearLayout android:id="@+id/contenedorMovimientos" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="16dp" android:layout_marginBottom="24dp" android:orientation="vertical"/>
 
     </LinearLayout>
 
