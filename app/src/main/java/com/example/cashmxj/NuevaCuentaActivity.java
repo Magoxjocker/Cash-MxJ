@@ -1,3 +1,4 @@
+
 package com.example.cashmxj;
 
 import android.os.Bundle;
@@ -21,6 +22,17 @@ public class NuevaCuentaActivity extends AppCompatActivity {
 
     private DatabaseHelper databaseHelper;
 
+    private int cuentaId = -1;
+    private boolean modoEdicion = false;
+
+    private final String[] tiposCuenta = {
+            "Efectivo",
+            "Cuenta bancaria",
+            "Tarjeta",
+            "Ahorros",
+            "Otro"
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,14 +49,6 @@ public class NuevaCuentaActivity extends AppCompatActivity {
 
         databaseHelper = new DatabaseHelper(this);
 
-        String[] tiposCuenta = {
-                "Efectivo",
-                "Cuenta bancaria",
-                "Tarjeta",
-                "Ahorros",
-                "Otro"
-        };
-
         ArrayAdapter<String> adapter = new ArrayAdapter<>(
                 this,
                 android.R.layout.simple_spinner_item,
@@ -57,9 +61,42 @@ public class NuevaCuentaActivity extends AppCompatActivity {
 
         spTipoCuenta.setAdapter(adapter);
 
+        cuentaId = getIntent().getIntExtra("cuenta_id", -1);
+        modoEdicion = cuentaId != -1;
+
+        if (modoEdicion) {
+            cargarCuentaParaEditar();
+        }
+
         btnVolver.setOnClickListener(v -> finish());
 
         btnGuardarCuenta.setOnClickListener(v -> guardarCuenta());
+    }
+
+    private void cargarCuentaParaEditar() {
+
+        Cuenta cuenta = databaseHelper.obtenerCuentaPorId(cuentaId);
+
+        if (cuenta == null) {
+            Toast.makeText(
+                    this,
+                    "No se encontro la cuenta",
+                    Toast.LENGTH_SHORT
+            ).show();
+            finish();
+            return;
+        }
+
+        etNombreCuenta.setText(cuenta.getNombre());
+        etSaldoInicial.setText(String.valueOf(cuenta.getSaldo()));
+        etDescripcionCuenta.setText(cuenta.getDescripcion());
+
+        for (int i = 0; i < tiposCuenta.length; i++) {
+            if (tiposCuenta[i].equals(cuenta.getTipo())) {
+                spTipoCuenta.setSelection(i);
+                break;
+            }
+        }
     }
 
     private void guardarCuenta() {
@@ -69,16 +106,14 @@ public class NuevaCuentaActivity extends AppCompatActivity {
         String descripcion = etDescripcionCuenta.getText().toString().trim();
         String tipo = spTipoCuenta.getSelectedItem().toString();
 
-        // Validar nombre
         if (nombre.isEmpty()) {
             etNombreCuenta.setError("Ingresa un nombre");
             etNombreCuenta.requestFocus();
             return;
         }
 
-        // Validar saldo
         if (saldoTexto.isEmpty()) {
-            etSaldoInicial.setError("Ingresa el saldo inicial");
+            etSaldoInicial.setError("Ingresa el saldo");
             etSaldoInicial.requestFocus();
             return;
         }
@@ -88,39 +123,61 @@ public class NuevaCuentaActivity extends AppCompatActivity {
         try {
             saldo = Long.parseLong(saldoTexto);
         } catch (NumberFormatException e) {
-            etSaldoInicial.setError("Ingresa un monto válido");
+            etSaldoInicial.setError("Ingresa un monto valido");
+            etSaldoInicial.requestFocus();
             return;
         }
 
-        // Crear objeto Cuenta
+        if (saldo < 0) {
+            etSaldoInicial.setError("El saldo no puede ser negativo");
+            etSaldoInicial.requestFocus();
+            return;
+        }
+
         Cuenta cuenta = new Cuenta(
-                0,
+                modoEdicion ? cuentaId : 0,
                 nombre,
                 tipo,
                 saldo,
                 descripcion
         );
 
-        // Guardar en SQLite
-        long resultado = databaseHelper.insertarCuenta(cuenta);
+        boolean guardado;
 
-        if (resultado != -1) {
+        if (modoEdicion) {
+            guardado = databaseHelper.actualizarCuenta(cuenta) > 0;
+        } else {
+            guardado = databaseHelper.insertarCuenta(cuenta) != -1;
+        }
+
+        if (guardado) {
 
             Toast.makeText(
                     this,
-                    "Cuenta guardada correctamente",
+                    modoEdicion
+                            ? "Cuenta actualizada correctamente"
+                            : "Cuenta guardada correctamente",
                     Toast.LENGTH_SHORT
             ).show();
 
+            setResult(RESULT_OK);
             finish();
 
         } else {
 
             Toast.makeText(
                     this,
-                    "No fue posible guardar la cuenta",
+                    "No fue posible guardar los cambios",
                     Toast.LENGTH_SHORT
             ).show();
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        if (databaseHelper != null) {
+            databaseHelper.close();
+        }
+        super.onDestroy();
     }
 }

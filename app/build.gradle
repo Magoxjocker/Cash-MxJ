@@ -1,9 +1,11 @@
+
 plugins {
     alias(libs.plugins.android.application)
 }
 
 android {
     namespace 'com.example.cashmxj'
+
     compileSdk {
         version = release(37)
     }
@@ -25,6 +27,7 @@ android {
             }
         }
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_11
         targetCompatibility JavaVersion.VERSION_11
@@ -32,10 +35,17 @@ android {
 }
 
 dependencies {
+
+    // DEPENDENCIAS ACTUALES
     implementation libs.activity.ktx
     implementation libs.appcompat
     implementation libs.constraintlayout
     implementation libs.material
+
+    // AUTENTICACION BIOMETRICA
+    implementation 'androidx.biometric:biometric:1.1.0'
+
+    // PRUEBAS
     testImplementation libs.junit
     androidTestImplementation libs.espresso.core
     androidTestImplementation libs.ext.junit
