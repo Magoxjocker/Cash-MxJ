@@ -124,7 +124,7 @@ public class CashMxJApplication extends Application {
 
         // MAINACTIVITY CONTROLA EL ACCESO
         // MEDIANTE PIN O BIOMETRIA
-        if (activity instanceof MainActivity) {
+        if (activity instanceof LoginActivity || activity instanceof RegistroActivity) {
             return;
         }
 
@@ -137,7 +137,7 @@ public class CashMxJApplication extends Application {
 
         Intent intent = new Intent(
                 activity,
-                MainActivity.class
+                LoginActivity.class
         );
 
         intent.addFlags(

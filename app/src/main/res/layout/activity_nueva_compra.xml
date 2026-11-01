@@ -33,6 +33,10 @@
 
         <TextView android:id="@+id/tvAvisoCompra" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Las compras realizadas descuentan saldo. Las programadas no descuentan hasta confirmarlas." android:textColor="@color/cash_text_secondary" android:textSize="13sp" android:layout_marginBottom="22dp"/>
 
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Ubicación de la compra (obligatoria)" android:textStyle="bold" android:textColor="@color/cash_text_primary" android:layout_marginBottom="8dp" />
+        <TextView android:id="@+id/tvUbicacionCompra" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Aún no se ha seleccionado una ubicación" android:textColor="@color/cash_text_secondary" android:layout_marginBottom="8dp" />
+        <Button android:id="@+id/btnUbicacionCompra" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Elegir ubicación en el mapa o GPS" android:textAllCaps="false" android:minHeight="52dp" android:layout_marginBottom="20dp" />
+
         <Button android:id="@+id/btnGuardarCompra" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Guardar compra" android:textAllCaps="false" android:backgroundTint="@color/cash_primary" android:textColor="@color/cash_white" android:minHeight="50dp" android:textSize="15sp" android:fontFamily="sans-medium"/>
 
     </LinearLayout>

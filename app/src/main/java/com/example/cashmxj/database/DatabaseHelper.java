@@ -16,7 +16,7 @@ import java.util.List;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "cashmxj.db";
-    private static final int DATABASE_VERSION = 6;
+    private static final int DATABASE_VERSION = 8;
 
     // CUENTAS
     private static final String TABLE_CUENTAS = "cuentas";
@@ -70,6 +70,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         CompartidasSchema.crearTablas(db);
         crearTablaLugares(db);
+        crearTablaUsuarios(db);
+        crearTablaUbicacionesCompras(db);
     }
 
     private void crearTablaCuentas(SQLiteDatabase db) {
@@ -203,6 +205,25 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if (oldVersion < 6) {
             crearTablaLugares(db);
         }
+        if (oldVersion < 7) {
+            crearTablaUsuarios(db);
+        }
+        if (oldVersion < 8) {
+            crearTablaUbicacionesCompras(db);
+        }
+    }
+
+    private void crearTablaUbicacionesCompras(SQLiteDatabase db) {
+        db.execSQL("CREATE TABLE IF NOT EXISTS ubicaciones_compras (" +
+                "compra_id INTEGER PRIMARY KEY, latitud REAL NOT NULL, longitud REAL NOT NULL, " +
+                "FOREIGN KEY(compra_id) REFERENCES " + TABLE_COMPRAS + "(" + COL_ID + ") ON DELETE CASCADE)");
+    }
+
+    private void crearTablaUsuarios(SQLiteDatabase db) {
+        db.execSQL("CREATE TABLE IF NOT EXISTS usuarios_app (" +
+                "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "correo TEXT NOT NULL UNIQUE COLLATE NOCASE, " +
+                "sal BLOB NOT NULL, hash BLOB NOT NULL)");
     }
 
     // MODULO 4 - LUGARES DEL MAPA (MAXIMO 4, CONTROLADO EN REPOSITORIO)

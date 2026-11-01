@@ -3,6 +3,9 @@ package com.example.cashmxj;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
+import android.content.Intent;
+import android.widget.TextView;
+import com.example.cashmxj.database.UbicacionesComprasRepository;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -34,6 +37,9 @@ public class NuevaCompraActivity extends AppCompatActivity {
     private Spinner spContactoCompra;
     private Spinner spEstadoCompra;
 
+    private Button btnUbicacionCompra;
+    private TextView tvUbicacionCompra;
+    private double latitud = Double.NaN, longitud = Double.NaN;
     private Button btnFechaCompra;
     private Button btnGuardarCompra;
 
@@ -62,6 +68,13 @@ public class NuevaCompraActivity extends AppCompatActivity {
         spEstadoCompra = findViewById(R.id.spEstadoCompra);
 
         btnFechaCompra = findViewById(R.id.btnFechaCompra);
+        btnUbicacionCompra = findViewById(R.id.btnUbicacionCompra);
+        tvUbicacionCompra = findViewById(R.id.tvUbicacionCompra);
+        btnUbicacionCompra.setOnClickListener(v -> {
+            Intent i = new Intent(this, MapaActivity.class);
+            i.putExtra(MapaActivity.EXTRA_SELECCION_COMPRA, true);
+            startActivityForResult(i, 410);
+        });
         btnGuardarCompra = findViewById(R.id.btnGuardarCompra);
 
         compraId = getIntent().getIntExtra(EXTRA_COMPRA_ID, -1);
@@ -174,6 +187,8 @@ public class NuevaCompraActivity extends AppCompatActivity {
             return;
         }
 
+        double[] ubicacion = new UbicacionesComprasRepository(databaseHelper).obtener(compraId);
+        if (ubicacion != null) establecerUbicacion(ubicacion[0], ubicacion[1]);
         etDescripcionCompra.setText(compra[1]);
         etMontoCompra.setText(compra[2]);
 
@@ -254,12 +269,30 @@ public class NuevaCompraActivity extends AppCompatActivity {
         );
     }
 
+    private void establecerUbicacion(double lat, double lon) {
+        latitud=lat; longitud=lon;
+        tvUbicacionCompra.setText(String.format(Locale.getDefault(), "Ubicación seleccionada: %.5f, %.5f",lat,lon));
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode,resultCode,data);
+        if(requestCode==410 && resultCode==RESULT_OK && data!=null) {
+            establecerUbicacion(data.getDoubleExtra(MapaActivity.EXTRA_LATITUD,Double.NaN),
+                    data.getDoubleExtra(MapaActivity.EXTRA_LONGITUD,Double.NaN));
+        }
+    }
+
     private void guardarCompra() {
 
         if (guardando || aplicacion.requiereAutenticacion()) {
             return;
         }
 
+        if (!Double.isFinite(latitud) || !Double.isFinite(longitud)) {
+            Toast.makeText(this,"Selecciona obligatoriamente la ubicación de la compra",Toast.LENGTH_LONG).show();
+            return;
+        }
         String descripcion = etDescripcionCompra.getText()
                 .toString()
                 .trim();
@@ -344,7 +377,7 @@ public class NuevaCompraActivity extends AppCompatActivity {
                         contactoId
                 );
 
-                exito = resultado == 1;
+                exito = resultado == 1 && new UbicacionesComprasRepository(databaseHelper).guardar(compraId,latitud,longitud);
 
             } else {
 
@@ -357,7 +390,7 @@ public class NuevaCompraActivity extends AppCompatActivity {
                         estado
                 );
 
-                exito = resultado > 0;
+                exito = resultado > 0 && new UbicacionesComprasRepository(databaseHelper).guardar((int)resultado,latitud,longitud);
             }
 
             if (exito) {

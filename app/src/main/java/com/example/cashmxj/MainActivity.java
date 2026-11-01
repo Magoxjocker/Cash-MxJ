@@ -123,129 +123,21 @@ public class MainActivity extends AppCompatActivity {
         // AUTENTICACIÓN
         // =====================================
 
-        configurarAutenticacionBiometrica();
 
         if (aplicacion.requiereAutenticacion()) {
             contenidoPrincipal.setVisibility(View.INVISIBLE);
-        }
-    }
-
-    private void configurarAutenticacionBiometrica() {
-
-        Executor executor = ContextCompat.getMainExecutor(this);
-
-        biometricPrompt = new BiometricPrompt(
-                this,
-                executor,
-                new BiometricPrompt.AuthenticationCallback() {
-
-                    @Override
-                    public void onAuthenticationSucceeded(
-                            @NonNull BiometricPrompt.AuthenticationResult result) {
-
-                        super.onAuthenticationSucceeded(result);
-
-                        autenticacionEnCurso = false;
-
-                        aplicacion.marcarAutenticado();
-
-                        contenidoPrincipal.setVisibility(View.VISIBLE);
-
-                        actualizarSaldoTotal();
-
-                        Toast.makeText(
-                                MainActivity.this,
-                                "Acceso autorizado",
-                                Toast.LENGTH_SHORT
-                        ).show();
-                    }
-
-                    @Override
-                    public void onAuthenticationError(
-                            int errorCode,
-                            @NonNull CharSequence errString) {
-
-                        super.onAuthenticationError(
-                                errorCode,
-                                errString
-                        );
-
-                        autenticacionEnCurso = false;
-
-                        if (aplicacion.requiereAutenticacion()) {
-                            contenidoPrincipal.setVisibility(View.INVISIBLE);
-                            finish();
-                        }
-                    }
-
-                    @Override
-                    public void onAuthenticationFailed() {
-
-                        super.onAuthenticationFailed();
-
-                        Toast.makeText(
-                                MainActivity.this,
-                                "Huella no reconocida",
-                                Toast.LENGTH_SHORT
-                        ).show();
-                    }
-                }
-        );
-
-        promptInfo = new BiometricPrompt.PromptInfo.Builder()
-                .setTitle("Cash MxJ")
-                .setSubtitle("Confirma tu identidad para acceder")
-                .setAllowedAuthenticators(
-                        BiometricManager.Authenticators.BIOMETRIC_STRONG |
-                                BiometricManager.Authenticators.DEVICE_CREDENTIAL
-                )
-                .build();
-    }
-
-    private void iniciarAutenticacion() {
-
-        if (autenticacionEnCurso) return;
-
-        BiometricManager biometricManager =
-                BiometricManager.from(this);
-
-        int resultado = biometricManager.canAuthenticate(
-                BiometricManager.Authenticators.BIOMETRIC_STRONG |
-                        BiometricManager.Authenticators.DEVICE_CREDENTIAL
-        );
-
-        if (resultado == BiometricManager.BIOMETRIC_SUCCESS) {
-
-            autenticacionEnCurso = true;
-
-            biometricPrompt.authenticate(promptInfo);
-
-        } else {
-
-            Toast.makeText(
-                    this,
-                    "Configura una huella o PIN seguro para acceder",
-                    Toast.LENGTH_LONG
-            ).show();
-
-            finish();
         }
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-
         if (aplicacion.requiereAutenticacion()) {
-
-            contenidoPrincipal.setVisibility(View.INVISIBLE);
-            iniciarAutenticacion();
-
-        } else {
-
-            contenidoPrincipal.setVisibility(View.VISIBLE);
-            actualizarSaldoTotal();
+            startActivity(new Intent(this, LoginActivity.class));
+            finish();
+            return;
         }
+        actualizarSaldoTotal();
     }
 
     private void actualizarSaldoTotal() {

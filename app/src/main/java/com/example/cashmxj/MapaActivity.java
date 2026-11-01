@@ -12,6 +12,8 @@ import android.graphics.Typeface;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.content.Intent;
+import com.example.cashmxj.database.UbicacionesComprasRepository;
 import android.text.InputType;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -45,6 +47,11 @@ import java.util.Map;
 
 public class MapaActivity extends AppCompatActivity {
 
+    public static final String EXTRA_SELECCION_COMPRA="seleccion_compra";
+    public static final String EXTRA_LATITUD="latitud_compra";
+    public static final String EXTRA_LONGITUD="longitud_compra";
+    private boolean seleccionCompra;
+    private final Map<Long, UbicacionesComprasRepository.CompraUbicada> comprasPorMarcador = new HashMap<>();
     private static final int PERMISO_UBICACION = 101;
 
     private static final String ESTILO_MAPA =
@@ -78,6 +85,7 @@ public class MapaActivity extends AppCompatActivity {
         MapLibre.getInstance(this);
 
         setContentView(R.layout.activity_mapa);
+        seleccionCompra = getIntent().getBooleanExtra(EXTRA_SELECCION_COMPRA,false);
 
         helper = new DatabaseHelper(this);
         repositorio = new LugaresRepository(helper);
@@ -118,10 +126,14 @@ public class MapaActivity extends AppCompatActivity {
         mapaLibre.setStyle(ESTILO_MAPA, style -> actualizar());
 
         mapaLibre.addOnMapLongClickListener(punto -> {
+            if (seleccionCompra) { confirmarUbicacion(punto); return true; }
             mostrarFormulario(null, punto);
             return true;
         });
 
+        if (seleccionCompra) {
+            Toast.makeText(this,"Mantén pulsado el punto de la compra o usa Mi ubicación",Toast.LENGTH_LONG).show();
+        }
         mapaLibre.setOnMarkerClickListener(marcador -> {
 
             if (marcadorUbicacion != null
@@ -134,6 +146,13 @@ public class MapaActivity extends AppCompatActivity {
                 return true;
             }
 
+            UbicacionesComprasRepository.CompraUbicada compra = comprasPorMarcador.get(marcador.getId());
+            if (compra != null) {
+                new AlertDialog.Builder(this).setTitle(compra.descripcion)
+                        .setMessage("Monto: $"+compra.monto+"\nCuenta: "+compra.cuenta+"\nEstado: "+compra.estado)
+                        .setPositiveButton("Cerrar",null).show();
+                return true;
+            }
             LugaresRepository.Lugar lugar =
                     lugaresPorMarcador.get(marcador.getId());
 
@@ -261,7 +280,23 @@ public class MapaActivity extends AppCompatActivity {
         }
     }
 
+    private void confirmarUbicacion(LatLng punto) {
+        new AlertDialog.Builder(this).setTitle("Ubicación de la compra")
+                .setMessage(String.format(java.util.Locale.getDefault(),"¿Usar este punto?\n%.5f, %.5f",punto.getLatitude(),punto.getLongitude()))
+                .setNegativeButton("Cancelar",null)
+                .setPositiveButton("Usar ubicación",(dialog,which)->{
+                    Intent resultado=new Intent();
+                    resultado.putExtra(EXTRA_LATITUD,punto.getLatitude());
+                    resultado.putExtra(EXTRA_LONGITUD,punto.getLongitude());
+                    setResult(RESULT_OK,resultado); finish();
+                }).show();
+    }
+
     private void mostrarUbicacion(Location ubicacion) {
+        if (seleccionCompra) {
+            confirmarUbicacion(new LatLng(ubicacion.getLatitude(),ubicacion.getLongitude()));
+            return;
+        }
 
         if (mapaLibre == null) {
             return;
@@ -390,9 +425,19 @@ public class MapaActivity extends AppCompatActivity {
         if (mapaLibre != null) {
             mapaLibre.clear();
             lugaresPorMarcador.clear();
+            comprasPorMarcador.clear();
             marcadorUbicacion = null;
         }
 
+        if (mapaLibre != null && !seleccionCompra) {
+            for (UbicacionesComprasRepository.CompraUbicada compra : new UbicacionesComprasRepository(helper).listar()) {
+                Icon icono = IconFactory.getInstance(this).fromBitmap(crearIcono("REALIZADA".equals(compra.estado) ? "🛍" : "🕒"));
+                Marker marcador = mapaLibre.addMarker(new MarkerOptions()
+                        .position(new LatLng(compra.latitud,compra.longitud))
+                        .title(compra.descripcion).icon(icono));
+                comprasPorMarcador.put(marcador.getId(),compra);
+            }
+        }
         for (LugaresRepository.Lugar lugar : lugares) {
 
             agregarFilaLugar(lugar);
